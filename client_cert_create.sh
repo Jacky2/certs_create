@@ -12,7 +12,7 @@ show_help() {
   echo "--passwd   设置java keystore和truststore证书密码"
 }
 
-if [[ $# < 12  ]]
+if [[ $# < 10  ]]
 then
    show_help
    echo "当前参数量为：$#"
