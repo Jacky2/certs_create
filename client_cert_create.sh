@@ -111,7 +111,7 @@ CERT_ALIAS=${ALIAS}
 TRUST_PASSWORD=$PASSWORD
 # 证书的keystore storepass密码和keypass密码
 KEY_PASSWORD=$PASSWORD
-# p12格式
+# p12格式证书密码
 P12_PASSWORD=$PASSWORD
 
 # keystore文件名
@@ -188,3 +188,17 @@ if [[ ! -f ${KEY_STORE} ]];then
     keytool -importcert -keystore ${KEY_STORE} -storepass ${KEY_PASSWORD} -alias ${CA_ALIAS} -keypass ${KEY_PASSWORD} -file ${CA_CERT_FILE} -noprompt
     echo "导入CA证书到keystore已完成"
 fi
+
+# cat << EOF > ${CN}/${CN}-password.txt
+cat > ${CN}/${CN}-password.txt << EOF
+
+# ${TRUST_STORE} 证书的truststore storepass密码和keypass密码
+TRUST_PASSWORD=$TRUST_PASSWORD
+
+# ${KEY_STORE} 证书的keystore storepass密码和keypass密码
+KEY_PASSWORD=$KEY_PASSWORD
+
+# ${P12_CERT_FILE} # p12格式证书密码
+P12_PASSWORD=$P12_PASSWORD
+
+EOF
